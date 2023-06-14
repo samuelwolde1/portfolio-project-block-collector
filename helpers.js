@@ -132,8 +132,8 @@ function updateRedBlocks() {
 
   // Move each red block randomly
   for (let i = 0; i < redBlocks.length; i++) {
-    redBlocks[i].x += randomInt(-2, 3);
-    redBlocks[i].y += randomInt(-2, 3);
+    redBlocks[i].x += redBlocks[i].speed;
+    redBlocks[i].y += redBlocks[i].speed;
   }
 }
 

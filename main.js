@@ -16,10 +16,11 @@ let player = {
   color: "blue",
   speed: 5,
 };
+let timer = 0;
 let blocks = [];
 let redBlocks = [];
-let timer = 0;
-
+generateBlocks();
+updateRedBlocks();
 
 // START DRAW FUNCTION ON PAGE LOAD
 window.addEventListener("load", draw);
