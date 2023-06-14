@@ -13,6 +13,8 @@ function startScreen() {
   // GAME LOGIC
   function gameLogic() {
     movePlayer();
+    moveBlocks();
+    moveRedBlocks();
     checkCollision();
     updateRedBlocks();
     checkGameOver();
@@ -110,6 +112,9 @@ function startScreen() {
     for (let i = 0; i < blocks.length; i++) {
       if (rectCollide(player, blocks[i])) {
         blocks.splice(i, 1);
+        if (blocks.length === 0){
+          state = "gamewon"
+        }
       }
     }
   }
@@ -125,27 +130,38 @@ function updateRedBlocks() {
       w: 25,
       h: 25,
       color: "red",
-      speed: 2,
+      speedX: 2,
+      speedY: 2,
     };
     redBlocks.push(redBlock);
-  }
-
-  // Move each red block randomly
-  for (let i = 0; i < redBlocks.length; i++) {
-    redBlocks[i].x += redBlocks[i].speed;
-    redBlocks[i].y += redBlocks[i].speed;
   }
 }
 
 function generateBlocks() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 50; i++) {
       let block = {
         x: Math.random() * cnv.width,
         y: Math.random() * cnv.height,
         w: 20,
         h: 20,
         color: "black",
+        speedX: 4,
+        speedY: 4,
       };
       blocks.push(block);
     }
+  }
+
+  function gameWon() {
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
+    ctx.fillStyle = "#008000";
+    ctx.fillRect(0, 0, cnv.width, cnv.height);
+  
+    // Game Won Text
+    ctx.font = "48px Calibri";
+    ctx.fillStyle = "white";
+    ctx.fillText("YOU WON", 100, 300);
+  
+    ctx.font = "24px Calibri";
+    ctx.fillText("Press SPACE to return to Start Screen.", 100, 350);
   }

@@ -34,6 +34,8 @@ function draw() {
     gameScreen();
   } else if (state === "gameover") {
     gameOver();
+  } else if (state === "gamewon"){
+    gameWon();
   }
 
   // REDRAW
@@ -49,6 +51,8 @@ function keydownHandler(e) {
   if (state === "start" && e.code === "Space") {
     state = "running";
   } else if (state === "gameover" && e.code === "Space") {
+    reset();
+  } else if (state === "gamewon" && e.code === "Space"){
     reset();
   }
 

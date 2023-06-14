@@ -6,6 +6,54 @@ let mouseY;
 
 let keyPressed = {};
 
+
+
+// Move blocks
+ function moveBlocks(){  // Move each red block randomly
+  for (let i = 0; i < blocks.length; i++) {
+    blocks[i].x += blocks[i].speedX;
+    blocks[i].y += blocks[i].speedY;
+
+    if (
+      blocks[i].x < 0 ||
+      blocks[i].x + blocks[i].w > cnv.width
+    ){
+      blocks[i].speedX *= -1;
+    }
+
+    if (
+      blocks[i].y < 0 || 
+      blocks[i].y + blocks[i].w > cnv.height
+    ){
+      blocks[i].speedY *= -1;
+    }
+  }
+}
+
+function moveRedBlocks(){
+  for (let i = 0; i < redBlocks.length; i++){
+    redBlocks[i].x += redBlocks[i].speedX;
+    redBlocks[i].y += redBlocks[i].speedY;
+
+    if (
+      redBlocks[i].x < 0 ||
+      redBlocks[i].x + redBlocks[i].w > cnv.width
+    ){
+      redBlocks[i].speedX *= -1;
+    }
+
+    if (
+      redBlocks[i].y < 0 ||
+      redBlocks[i].y + redBlocks[i].w > cnv.height
+    ){
+      redBlocks[i].speedY *= -1
+    }
+  }
+}
+
+
+
+
 // EVENT STUFF
 
 // Update position of mouse, (mouseX, mouseY), when mouse moved
